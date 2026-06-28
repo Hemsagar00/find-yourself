@@ -280,6 +280,20 @@ export function generatePhoneDorks(parsed: ParsedPhone): PhoneDork[] {
     description: 'Multiple formatting combinations',
   });
 
+  dorks.push({
+    category: 'Government & Public Records',
+    title: 'India Public Records',
+    dork: `"${cleanNational}" OR "${e164}" (india OR "gov.in" OR "nic.in" OR election OR "voter list" OR police OR complaint)`,
+    description: 'Public and government indexed mentions',
+  });
+
+  dorks.push({
+    category: 'Messaging & Apps',
+    title: 'Truecaller / Call Logs hints',
+    dork: `"${cleanNational}" OR "${e164}" (truecaller OR "missed call" OR "spam call")`,
+    description: 'Reputation and call-related public traces',
+  });
+
   return dorks;
 }
 

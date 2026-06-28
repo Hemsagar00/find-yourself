@@ -1,42 +1,62 @@
 # Find Yourself
 
-**Zero-cost, fully open-source OSINT tool** for email and mobile number intelligence.
+**A zero-cost, fully open-source OSINT tool for email and mobile number intelligence.**
 
-Built with Next.js 16 (static export) — deployable to **Cloudflare Pages** at zero recurring cost.
+Built with Next.js 16 App Router (static export) — designed for **Cloudflare Pages** deployment with no recurring costs.
 
-> **ETHICAL USE ONLY**  
-> This tool only queries public data. Respect India's DPDP Act and all privacy laws.  
-> Do not use for harassment, stalking, fraud, or illegal purposes.
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?logo=tailwind-css)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Features
 
 ### Unified Smart Search
-- Auto-detects **email** vs **phone number** (+91 India excellent support)
-- Batch paste (multiple lines / CSV-style)
+- Single prominent input with auto-detection (email vs. phone number)
+- Excellent support for Indian numbers (`+91`)
+- Batch mode: paste multiple emails or phones (lines or comma-separated)
 
-### Email OSINT
-- Have I Been Pwned breaches (with demo fallback)
-- Gravatar, GitHub public profile, risk scoring
-- Domain info
+### Email Intelligence
+- Have I Been Pwned breach data (graceful demo fallback for browser limitations)
+- Gravatar, GitHub public footprint
+- Client-side risk scoring
+- Domain and quick OSINT links
 
-### Mobile Number OSINT (Core Addition)
-- `libphonenumber-js` parsing + validation
-- India carrier hints (Jio, Airtel, Vi, BSNL)
-- **Powerful Dork Generator** — PhoneInfoga-inspired categorized dorks
-- One-click "Copy Dork" + "Search in Google"
-- Free public lookup tool links
+### Mobile Number Intelligence
+- Parsing & validation via `libphonenumber-js`
+- India carrier hints (Jio, Airtel, Vi, BSNL and more)
+- **Powerful Dork Generator** (PhoneInfoga-inspired):
+  - Categorized Google dorks for Social Media, Professional Directories, Documents, Spam/Reputation, etc.
+  - One-click **Copy Dork** and **Open in Google**
+- Direct links to free public lookup services
 
-### Dashboard & Export
-- Modern tabbed results (Overview, Metadata, Breaches/Dorks, Investigation Hub)
-- Framer Motion animations
-- Export: JSON, CSV (papaparse), PDF (jsPDF + disclaimer)
-- Local history (localStorage)
-- Strong ethical disclaimers (English + Telugu)
+### Professional Dashboard
+- Clean tabbed interface: Overview, Metadata, Breaches/Dorks, Investigation Hub
+- Framer Motion animations and responsive design
+- Visual risk scoring
+- Full export support: JSON, CSV, PDF (with embedded ethical disclaimer)
+- Local search history
 
-## Tech Stack (100% Free & Client-Side)
-- Next.js 16 + TypeScript + Tailwind v4 + static export
-- libphonenumber-js, framer-motion, jspdf, papaparse, zod, react-hook-form
-- No backend, no paid APIs, no keys required
+## Ethical & Legal Notice
+
+> This tool **only** uses publicly available information.  
+> You are solely responsible for your use.  
+> Respect privacy laws (including India's DPDP Act).  
+> Do **not** use this tool for harassment, stalking, fraud, or any illegal activity.
+
+All processing happens entirely in the browser. No data is transmitted to or stored on any server by this application.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router, static export)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI/Animation**: Framer Motion, Sonner (toasts), Lucide icons
+- **Phone**: libphonenumber-js
+- **Exports**: jsPDF, PapaParse
+- **Validation**: Zod + React Hook Form (where applicable)
+
+**100% client-side. No backend required. No paid APIs.**
 
 ## Getting Started
 
@@ -45,102 +65,61 @@ npm install
 npm run dev
 ```
 
-Visit http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000)
 
-### Build & Deploy to Cloudflare Pages
+## Building & Deployment
 
 ```bash
-npm run build          # generates `out/`
-npm run deploy         # uses wrangler (or connect GitHub in dashboard)
+npm run build
 ```
 
-**Dashboard settings (GitHub connection recommended):**
-- Build command: `npm run build`
-- Output directory: `out`
+The `out/` directory is ready for static hosting.
 
-See `wrangler` script in package.json.
+### Cloudflare Pages (Recommended)
+
+1. Connect your GitHub repository in the Cloudflare dashboard.
+2. Use these settings:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+3. Deploy.
+
+Or use the CLI:
+
+```bash
+npm run deploy
+```
 
 ## Project Structure
 
 ```
-app/
-  page.tsx            # Main unified search + results dashboard
-lib/
-  phone-utils.ts      # Parser, carrier map, powerful dork generator (pure client)
-components/           # Future reusable UI pieces
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx                 # Main application (unified search + dashboard)
+│   └── globals.css
+├── lib/
+│   └── phone-utils.ts           # Phone parsing, carrier lookup, dork generator
+├── components/                  # Reusable UI pieces (expandable)
+├── public/
+├── next.config.ts               # output: 'export'
+└── package.json
 ```
-
-## Ethical Policy & Compliance
-
-- Only public data
-- Clear disclaimers in UI + exports
-- DPDP Act (India) reference
-- Telugu language support for accessibility
 
 ## Contributing
 
-Improvements welcome:
-- More India carrier prefixes
-- Better dork patterns
-- Additional free lookup integrations
-- UI/UX polish
+Contributions are welcome! Areas that would help:
 
-Open a PR!
+- Additional accurate carrier prefix data
+- Improved / more dorks
+- UI/UX refinements
+- Better export formatting
+- Accessibility improvements
 
-## License
-
-MIT — Use responsibly.
-
-## Tech
-- Next.js 16 (App Router, static export)
-- TypeScript + Tailwind v4
-- Sonner toasts, lucide icons
-
-## Deploy
-
-This is a **static site** (`output: 'export'`). Perfect for Cloudflare Pages.
-
-### Recommended: Connect GitHub (auto-deploy)
-
-1. Go to [Cloudflare Dashboard → Pages](https://dash.cloudflare.com/?to=/:account/pages)
-2. Click **Create a project** → **Connect to Git**
-3. Select your repo: `Hemsagar00/find-yourself`
-4. Configure:
-   - **Framework preset**: `Next.js` (or None)
-   - **Build command**: `npm run build`
-   - **Build output directory**: `out`
-5. Save and deploy.
-
-Future pushes to `main` will auto-deploy. Preview deployments for PRs too.
-
-### Quick deploy with Wrangler (CLI)
-
-```bash
-# 1. Login to Cloudflare (one time)
-npx wrangler login
-
-# 2. Deploy (builds + deploys the `out/` folder)
-npm run deploy
-```
-
-Or manually:
-
-```bash
-npm run build
-npx wrangler pages deploy out --project-name find-yourself
-```
-
-First deploy will prompt to create the Pages project named `find-yourself`.
-
-### Custom Domain
-
-After deploy:
-- In Pages project settings → Custom domains
-- Add your domain and follow DNS instructions.
-
-### Environment variables (if needed later)
-
-Set them in the Pages dashboard (Settings → Environment variables). They are available at build time for static.
+Please open an issue or pull request.
 
 ## License
-Open source. Use responsibly and ethically. Do not use for malicious purposes.
+
+MIT License — use responsibly and ethically.
+
+---
+
+**Find Yourself** — Public data. Responsible tools. Zero cost.

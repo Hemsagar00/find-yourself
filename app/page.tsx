@@ -53,11 +53,8 @@ interface SearchHistoryItem {
 
 const ETHICAL_DISCLAIMER = 
   "This tool only surfaces publicly available information from open sources. " +
-  "Respect all applicable laws including India's DPDP Act. Do not use for harassment, stalking, " +
-  "fraud, or any illegal activity. You are responsible for your use of this information.";
-
-const TELUGU_DISCLAIMER = 
-  "ఈ సాధనం పబ్లిక్ డేటాను మాత్రమే చూపిస్తుంది. గోప్యతా చట్టాలను గౌరవించండి (DPDP Act). దుర్వినియోగం చేయవద్దు.";
+  "Respect all applicable laws (including India's DPDP Act). Do not use for harassment, stalking, " +
+  "fraud, or any illegal activity. You are fully responsible for your use of this information.";
 
 export default function FindYourself() {
   const [query, setQuery] = useState('');
@@ -68,7 +65,7 @@ export default function FindYourself() {
   const [history, setHistory] = useState<SearchHistoryItem[]>([]);
   const [activeTab, setActiveTab] = useState<'overview' | 'metadata' | 'breaches' | 'dorks' | 'hub'>('overview');
   const [expandedResult, setExpandedResult] = useState<number | null>(0);
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
+
 
   // Load history
   useEffect(() => {
@@ -378,7 +375,7 @@ export default function FindYourself() {
             </div>
             <div>
               <div className="font-semibold text-2xl tracking-tight">Find Yourself</div>
-              <div className="text-[10px] text-[#71717a] -mt-1 tracking-[1px]">OPEN SOURCE OSINT</div>
+              <div className="text-[10px] text-[#71717a] -mt-1 tracking-[1px]">OPEN SOURCE EMAIL &amp; PHONE OSINT</div>
             </div>
           </div>
 
@@ -407,7 +404,6 @@ export default function FindYourself() {
         <div className="mt-4 text-xs text-[#52525b] max-w-lg mx-auto">
           {ETHICAL_DISCLAIMER}
         </div>
-        <div className="mt-1 text-xs text-[#3b82f6]/80">{TELUGU_DISCLAIMER}</div>
 
         {/* Mode Toggle */}
         <div className="flex justify-center gap-2 mt-8">
@@ -540,7 +536,22 @@ export default function FindYourself() {
                           <div className={`text-3xl font-semibold tabular-nums ${getRiskColor(result.riskScore)}`}>
                             {result.riskScore}
                           </div>
+                          <div className="text-[10px] text-[#52525b]">{getRiskLabel(result.riskScore)}</div>
                         </div>
+
+                        {/* Visual risk gauge */}
+                        <div className="w-9 h-9 relative">
+                          <svg className="w-9 h-9 -rotate-90" viewBox="0 0 36 36">
+                            <path className="stroke-[#27272a]" strokeWidth="3" fill="none" d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31" />
+                            <path
+                              className={result.riskScore > 60 ? "stroke-red-400" : result.riskScore > 30 ? "stroke-amber-400" : "stroke-emerald-400"}
+                              strokeWidth="3" strokeLinecap="round" fill="none"
+                              strokeDasharray={`${result.riskScore} 100`}
+                              d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31"
+                            />
+                          </svg>
+                        </div>
+
                         {isExpanded ? <ChevronUp /> : <ChevronDown />}
                       </div>
                     </div>
