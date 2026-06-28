@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+  
+  --bg: #0a0a0b;
+  --surface: #111113;
+  --accent: #3b82f6;
+  --text: #fafafa;
+  --text-secondary: #71717a;
+  --border: #27272a;
+  --success: #22c55e;
+  --danger: #ef4444;
+}
+
+body {
+  font-family: var(--font-geist-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
+  outline: none;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card:hover {
+  border-color: #3a3a3c;
+}
+
+.section-title {
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.breach-card {
+  background: #1a0f0f;
+  border: 1px solid #3f1f1f;
+  transition: all 0.2s ease;
+}
+
+.breach-card:hover {
+  border-color: #5c2a2a;
+}
+
+.quick-action {
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.quick-action:hover {
+  border-color: var(--accent);
+  background: #18181b;
+  transform: translateY(-1px);
+}
+
+.result-header {
+  transition: all 0.3s ease;
+}
