@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Find Yourself | Email OSINT Tool",
-  description: "Turn any email into a complete public profile. Free & open source.",
+  title: "Find Yourself | Email & Phone OSINT",
+  description: "Free, zero-cost, open-source OSINT for email and mobile numbers. Public data only. Client-side. DPDP compliant.",
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({

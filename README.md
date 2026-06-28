@@ -1,18 +1,42 @@
 # Find Yourself
 
-Professional email OSINT / reconnaissance tool. Enter any email to analyze public breach data, domain info, GitHub footprint and risk scoring.
+**Zero-cost, fully open-source OSINT tool** for email and mobile number intelligence.
 
-> **Note**: Live HaveIBeenPwned lookups are performed client-side and are often blocked by CORS in browsers. The app gracefully falls back to realistic demo data so the full UI/UX can be previewed. For production-grade live data, deploy behind a lightweight proxy that adds the required headers / API key.
+Built with Next.js 16 (static export) — deployable to **Cloudflare Pages** at zero recurring cost.
+
+> **ETHICAL USE ONLY**  
+> This tool only queries public data. Respect India's DPDP Act and all privacy laws.  
+> Do not use for harassment, stalking, fraud, or illegal purposes.
 
 ## Features
-- Single + batch email analysis
-- Breach history (HIBP)
-- Gravatar, domain age (simulated), MX records
-- GitHub profile lookup
-- Risk scoring
-- Quick external OSINT links (Google, LinkedIn, WHOIS)
-- Export results (JSON)
-- Fully static-export friendly (Next.js)
+
+### Unified Smart Search
+- Auto-detects **email** vs **phone number** (+91 India excellent support)
+- Batch paste (multiple lines / CSV-style)
+
+### Email OSINT
+- Have I Been Pwned breaches (with demo fallback)
+- Gravatar, GitHub public profile, risk scoring
+- Domain info
+
+### Mobile Number OSINT (Core Addition)
+- `libphonenumber-js` parsing + validation
+- India carrier hints (Jio, Airtel, Vi, BSNL)
+- **Powerful Dork Generator** — PhoneInfoga-inspired categorized dorks
+- One-click "Copy Dork" + "Search in Google"
+- Free public lookup tool links
+
+### Dashboard & Export
+- Modern tabbed results (Overview, Metadata, Breaches/Dorks, Investigation Hub)
+- Framer Motion animations
+- Export: JSON, CSV (papaparse), PDF (jsPDF + disclaimer)
+- Local history (localStorage)
+- Strong ethical disclaimers (English + Telugu)
+
+## Tech Stack (100% Free & Client-Side)
+- Next.js 16 + TypeScript + Tailwind v4 + static export
+- libphonenumber-js, framer-motion, jspdf, papaparse, zod, react-hook-form
+- No backend, no paid APIs, no keys required
 
 ## Getting Started
 
@@ -21,14 +45,51 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Visit http://localhost:3000
 
-Build for static hosting:
+### Build & Deploy to Cloudflare Pages
 
 ```bash
-npm run build
-# output goes to `out/`
+npm run build          # generates `out/`
+npm run deploy         # uses wrangler (or connect GitHub in dashboard)
 ```
+
+**Dashboard settings (GitHub connection recommended):**
+- Build command: `npm run build`
+- Output directory: `out`
+
+See `wrangler` script in package.json.
+
+## Project Structure
+
+```
+app/
+  page.tsx            # Main unified search + results dashboard
+lib/
+  phone-utils.ts      # Parser, carrier map, powerful dork generator (pure client)
+components/           # Future reusable UI pieces
+```
+
+## Ethical Policy & Compliance
+
+- Only public data
+- Clear disclaimers in UI + exports
+- DPDP Act (India) reference
+- Telugu language support for accessibility
+
+## Contributing
+
+Improvements welcome:
+- More India carrier prefixes
+- Better dork patterns
+- Additional free lookup integrations
+- UI/UX polish
+
+Open a PR!
+
+## License
+
+MIT — Use responsibly.
 
 ## Tech
 - Next.js 16 (App Router, static export)
