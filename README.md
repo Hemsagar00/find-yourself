@@ -36,7 +36,50 @@ npm run build
 - Sonner toasts, lucide icons
 
 ## Deploy
-Works great on GitHub Pages, Vercel, Cloudflare Pages, Netlify (static).
+
+This is a **static site** (`output: 'export'`). Perfect for Cloudflare Pages.
+
+### Recommended: Connect GitHub (auto-deploy)
+
+1. Go to [Cloudflare Dashboard → Pages](https://dash.cloudflare.com/?to=/:account/pages)
+2. Click **Create a project** → **Connect to Git**
+3. Select your repo: `Hemsagar00/find-yourself`
+4. Configure:
+   - **Framework preset**: `Next.js` (or None)
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+5. Save and deploy.
+
+Future pushes to `main` will auto-deploy. Preview deployments for PRs too.
+
+### Quick deploy with Wrangler (CLI)
+
+```bash
+# 1. Login to Cloudflare (one time)
+npx wrangler login
+
+# 2. Deploy (builds + deploys the `out/` folder)
+npm run deploy
+```
+
+Or manually:
+
+```bash
+npm run build
+npx wrangler pages deploy out --project-name find-yourself
+```
+
+First deploy will prompt to create the Pages project named `find-yourself`.
+
+### Custom Domain
+
+After deploy:
+- In Pages project settings → Custom domains
+- Add your domain and follow DNS instructions.
+
+### Environment variables (if needed later)
+
+Set them in the Pages dashboard (Settings → Environment variables). They are available at build time for static.
 
 ## License
 Open source. Use responsibly and ethically. Do not use for malicious purposes.
